@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090A0F">
+  <meta name="description" content="Explore physics and astronomy with Trimeverse. Discover interactive simulations, gravity, quantum mechanics and the night sky.">
+  <title>Trimeverse — Physics &amp; Astronomy You Can Explore</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23080c13'/%3E%3Cpath d='M10 9h20v6h-7v18h-6V15h-7z' fill='%23f4ecdc'/%3E%3Cellipse cx='20' cy='22' rx='17' ry='6' transform='rotate(-25 20 22)' fill='none' stroke='%23e2b774' stroke-width='2'/%3E%3Ccircle cx='34' cy='14' r='3' fill='%23e2b774'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="home-obsidian.css?v=obsidian-10">
+  <link rel="stylesheet" href="home-motion.css?v=obsidian-10">
+  <style>body{margin:0;background:#090a0f}.cursor-interaction{cursor:pointer}</style>
+  <script src="home-obsidian.js?v=obsidian-10" defer></script>
+  <script type="module" src="site.mjs"></script>
+</head>
+<body data-page="home">
+<div id="trimeverse-obsidian" class="tv-site">
+  <div class="tv-living-haze" aria-hidden="true"></div>
+  <canvas id="tv-background-canvas" class="tv-background-canvas" aria-hidden="true"></canvas>
+  <div class="tv-cursor" aria-hidden="true"></div>
+  <a class="tv-skip cursor-interaction" href="#tv-main">Skip to content</a>
+  <header class="tv-header" id="tv-home">
+    <nav class="tv-nav" aria-label="Main navigation">
+      <a class="tv-brand cursor-interaction" href="/" aria-label="Trimeverse home">
+        <img src="assets/logo.webp" alt="" width="40" height="40">
+        <span>Trimeverse<span class="tv-brand-dot">.</span></span>
+      </a>
+      <button type="button" class="tv-menu cursor-interaction" aria-expanded="false" aria-controls="tv-nav-links">Menu <span aria-hidden="true">+</span></button>
+      <div class="tv-nav-links" id="tv-nav-links">
+        <a class="tv-nav-current cursor-interaction" href="/" aria-current="page">Home</a>
+        <a class="cursor-interaction" href="/simulations.html">Simulations</a>
+        <a class="cursor-interaction" href="/learn.html">Learn</a>
+        <a class="cursor-interaction" href="/observe.html">Observe</a>
+      </div>
+      <a class="tv-button tv-button-small tv-nav-cta cursor-interaction" href="/simulations.html">Explore Cosmos <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="tv-main">
+    <section class="tv-hero" aria-labelledby="tv-title">
+      <div class="tv-hero-aura" aria-hidden="true"></div>
+      <div class="tv-eyebrow"><span class="tv-status-dot"></span> A SPACE FOR THE CURIOUS</div>
+      <h1 id="tv-title">Physics and Astronomy<br><span>You Can Explore</span></h1>
+      <p class="tv-intro">Go beyond the equations. Experiment with gravity, uncover the quantum<br class="tv-desktop-break"> world, and see the universe from a different perspective.</p>
+      <div class="tv-actions">
+        <a class="tv-button cursor-interaction" href="/simulations.html">Explore simulations <span aria-hidden="true">↗</span></a>
+        <button class="tv-button tv-button-secondary cursor-interaction" type="button" data-cinema aria-pressed="false"><span class="tv-play-symbol" aria-hidden="true">Ⅱ</span><span data-cinema-label>Pause all motion</span></button>
+      </div>
+
+      <div class="tv-cinema" id="tv-cinema">
+        <video class="tv-cinema-image tv-cinema-video" muted playsinline loop preload="auto" poster="assets/black-hole-poster.webp" width="1040" height="600" aria-label="Looping NASA visualization of flowing gas in a black hole’s accretion disk. Colors styled for Trimeverse."><source src="assets/black-hole-live.webm" type="video/webm">Black-hole accretion disk visualization.</video>
+        <div class="tv-cinema-shade" aria-hidden="true"></div>
+        <div class="tv-cinema-top"><span class="tv-cinema-label"><span class="tv-mini-cross" aria-hidden="true">+</span> DEEP SPACE / 001</span><span class="tv-glass-tag tv-live-tag">ANIMATED VISUALIZATION</span></div>
+        <div class="tv-cinema-copy"><span class="tv-kicker">AT THE EDGE OF THE UNKNOWN</span><h2>Let curiosity<br>pull you in.</h2><a class="tv-inline-link cursor-interaction" href="/gravity.html">Discover gravity <span aria-hidden="true">↗</span></a></div>
+        <div class="tv-cinema-bottom"><a class="tv-source-credit cursor-interaction" href="https://svs.gsfc.nasa.gov/13326/" target="_blank" rel="noopener noreferrer">NASA / Goddard / Jeremy Schnittman · color-styled</a><button type="button" class="tv-motion-toggle cursor-interaction" data-cinema aria-pressed="false"><span data-motion-label>Motion on</span><span class="tv-toggle-track" aria-hidden="true"><span></span></span></button></div>
+      </div>
+      <div class="tv-under-hero"><span>32 simulations. Endless questions.</span><span class="tv-under-line" aria-hidden="true"></span><span>Made for exploration.</span></div>
+    </section>
+
+    <section class="tv-explore tv-container" id="tv-explore" aria-labelledby="tv-explore-title">
+      <div class="tv-section-heading"><div><span class="tv-kicker">YOUR NEXT DISCOVERY</span><h2 id="tv-explore-title">A universe of possibilities.</h2></div><a class="tv-text-link cursor-interaction" href="/simulations.html">All simulations <span aria-hidden="true">↗</span></a></div>
+      <div class="tv-bento">
+        <article class="tv-module tv-deep-space" id="tv-deep-space">
+          <canvas id="tv-orbit-canvas" class="tv-orbit-visual" role="img" aria-label="Animated schematic of three circular planetary orbits viewed at an angle. Inner orbits have shorter periods; body sizes are enlarged.">Three planets orbit a star.</canvas>
+          <div class="tv-space-overlay" aria-hidden="true"></div>
+          <div class="tv-module-top"><span class="tv-module-number">01 / THE COSMOS</span><span class="tv-category">GRAVITY</span></div>
+          <div class="tv-space-content"><div class="tv-topic-tags"><span>Orbital motion</span><span>Sizes enlarged</span></div><h3>Deep Space<br>Exploration</h3><p>Change the conditions.<br>Discover how gravity shapes a universe.</p><a class="tv-module-link cursor-interaction" href="/gravity.html">Open gravity lab <span aria-hidden="true">↗</span></a></div>
+        </article>
+
+        <article class="tv-module tv-quantum">
+          <div class="tv-module-top"><span class="tv-module-number">02 / THE INVISIBLE</span><span class="tv-tiny-dot tv-violet-dot" aria-hidden="true"></span></div>
+          <div class="tv-quantum-visual"><canvas id="tv-quantum-canvas" role="img" aria-label="A projected probability cloud of the hydrogen 1s state. Dots represent possible electron measurements, not electron paths.">Hydrogen electron probability cloud.</canvas><span class="tv-quantum-view" id="tv-quantum-view">View: ±6 a₀</span></div>
+          <div class="tv-module-copy"><h3>Quantum<br>Mechanics</h3><p>A different kind of world.<br>Explore where an electron may be.</p></div>
+          <div class="tv-quantum-footer"><span class="tv-small-label" id="tv-quantum-status" aria-live="polite">Hydrogen · 1s state</span><div class="tv-state-switch" aria-label="Hydrogen state"><button type="button" class="cursor-interaction" data-state="1s" aria-pressed="true">1s</button><button type="button" class="cursor-interaction" data-state="2s" aria-pressed="false">2s</button></div></div>
+          <span class="tv-fineprint">Rotating view · probability cloud</span>
+        </article>
+
+        <article class="tv-module tv-observe" id="tv-observe">
+          <div class="tv-module-top"><span class="tv-module-number">03 / THE SKY</span><span class="tv-tiny-dot" aria-hidden="true"></span></div>
+          <div class="tv-map-visual"><canvas id="tv-sky-canvas" role="img" aria-label="Synthetic star field for an interactive interface preview; not a map of actual stars.">Simulated sky preview.</canvas><span class="tv-demo-badge">DEMO TELEMETRY</span></div>
+          <div class="tv-module-copy"><h3>Star Maps &amp;<br>Astrophysics Data</h3><p>Find patterns in the dark.<br>A glimpse inside the observatory.</p></div>
+          <div class="tv-telemetry"><div><span class="tv-small-label">Simulated sources</span><strong id="tv-source-count">48<span> / 128</span></strong></div><button class="tv-scan-button cursor-interaction" type="button" id="tv-scan" aria-label="Scan simulated sky" aria-describedby="tv-scan-status"><span aria-hidden="true">↗</span></button></div>
+          <span class="tv-fineprint" id="tv-scan-status" aria-live="polite">Scan a simulated sky</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="tv-learn tv-container" id="tv-learn" aria-labelledby="tv-learn-title">
+      <div class="tv-learn-intro"><span class="tv-kicker">FROM WONDER TO UNDERSTANDING</span><h2 id="tv-learn-title">Follow a question.<br>Find something extraordinary.</h2><p>Start small. Change one thing. See what happens.</p></div>
+      <div class="tv-learning-list">
+        <details class="tv-lesson"><summary class="cursor-interaction"><span class="tv-lesson-number">01</span><span>What keeps a planet in orbit?<small>Gravity &amp; motion</small></span><span class="tv-lesson-plus" aria-hidden="true">+</span></summary><div class="tv-lesson-answer"><p>Gravity continually bends a planet’s path. Its sideways motion carries it forward, producing an orbit when the conditions are right.</p><a class="tv-inline-link cursor-interaction" href="/kepler-orbits.html">Explore orbital motion ↗</a></div></details>
+        <details class="tv-lesson"><summary class="cursor-interaction"><span class="tv-lesson-number">02</span><span>How do waves make a pattern?<small>Waves &amp; interference</small></span><span class="tv-lesson-plus" aria-hidden="true">+</span></summary><div class="tv-lesson-answer"><p>When waves overlap, their displacements add. Crests can reinforce each other, while a crest and a trough can cancel.</p><a class="tv-inline-link cursor-interaction" href="/wave-interference.html">Explore wave interference ↗</a></div></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="tv-footer tv-container"><div><a class="tv-brand cursor-interaction" href="/"><img src="assets/logo.webp" alt="" width="32" height="32"><span>Trimeverse<span class="tv-brand-dot">.</span></span></a><p>Physics &amp; astronomy you can explore.</p></div><div class="tv-footer-right"><span>Stay curious.</span><a class="cursor-interaction" href="#tv-home">Back to the stars ↑</a></div></footer>
+</div>
+
+</body>
+</html>

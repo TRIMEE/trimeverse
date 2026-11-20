@@ -1,0 +1,50 @@
+/* Continuous ambient motion. The content surface stays steady and readable. */
+#trimeverse-obsidian { background: #070912; }
+#trimeverse-obsidian .tv-background-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+#trimeverse-obsidian .tv-living-haze { position: absolute; inset: -60px -20% auto; height: 1200px; z-index: -2; pointer-events: none; opacity: .85; background: radial-gradient(ellipse at 20% 25%,rgba(90,36,175,.28),transparent 44%),radial-gradient(ellipse at 76% 33%,rgba(0,178,220,.17),transparent 42%),radial-gradient(ellipse at 64% 80%,rgba(105,37,173,.14),transparent 48%); mask-image: linear-gradient(to bottom,#000 50%,transparent 100%); -webkit-mask-image: linear-gradient(to bottom,#000 50%,transparent 100%); transform-origin: 50% 35%; animation: tv-haze-drift 23s ease-in-out infinite alternate; animation-play-state: paused; }
+#trimeverse-obsidian[data-motion="on"][data-visible="true"] .tv-living-haze { animation-play-state: running; }
+#trimeverse-obsidian .tv-hero-aura { background: radial-gradient(ellipse at 50% 50%,rgba(9,10,15,.75),transparent 70%); }
+#trimeverse-obsidian .tv-cinema { background: #020309; }
+#trimeverse-obsidian .tv-cinema .tv-cinema-video { position: absolute; inset: 0 0 0 12%; width: 94%; height: 100%; object-fit: cover; object-position: center; filter: hue-rotate(180deg) saturate(1.05); transform: none; animation: none; }
+#trimeverse-obsidian .tv-cinema-shade { background: linear-gradient(90deg,#03050c 0%,rgba(3,5,12,.84) 17%,rgba(3,5,12,.18) 51%,transparent 77%),linear-gradient(0deg,rgba(4,6,14,.92),transparent 28%,transparent 79%,rgba(4,6,14,.36)); }
+#trimeverse-obsidian .tv-live-tag { color: #bdfbff; border-color: rgba(0,240,255,.25); }
+#trimeverse-obsidian .tv-live-tag::before { content: ''; display: inline-block; width: 5px; height: 5px; margin-right: 7px; border-radius: 50%; background: var(--tv-cyan); vertical-align: 1px; }
+#trimeverse-obsidian[data-motion="off"] .tv-live-tag::before { background: #8992a5; }
+#trimeverse-obsidian .tv-source-credit { max-width: 70%; font-size: 10px; line-height: 1.5; letter-spacing: 0; color: #bac5d6; }
+#trimeverse-obsidian .tv-source-credit:hover { color: var(--tv-cyan); }
+#trimeverse-obsidian .tv-orbit-visual { position: absolute; inset: 33px 0 auto; height: 210px; width: 100%; }
+#trimeverse-obsidian .tv-deep-space { background: radial-gradient(ellipse at 60% 27%,rgba(0,240,255,.055),transparent 60%),#10131e; }
+#trimeverse-obsidian .tv-space-overlay { pointer-events: none; background: linear-gradient(180deg,transparent 30%,rgba(16,19,30,.16) 43%,#10131e 73%); }
+#trimeverse-obsidian .tv-space-content { padding-top: 166px; }
+#trimeverse-obsidian .tv-quantum-visual, #trimeverse-obsidian .tv-map-visual { height: 195px; }
+#trimeverse-obsidian .tv-module-top { min-height: 42px; }
+#trimeverse-obsidian .tv-module-number { font-size: 10px; letter-spacing: .6px; }
+#trimeverse-obsidian .tv-cinema-bottom { align-items: center; }
+#trimeverse-obsidian .tv-cinema-copy .tv-kicker { font-size: 10px; }
+#trimeverse-obsidian .tv-kicker, #trimeverse-obsidian .tv-small-label, #trimeverse-obsidian .tv-fineprint, #trimeverse-obsidian .tv-topic-tags span { font-size: 11px; }
+#trimeverse-obsidian .tv-module p { font-size: 13px; }
+#trimeverse-obsidian .tv-quantum-footer { padding-top: 18px; }
+#trimeverse-obsidian .tv-quantum-view { font-size: 10px; }
+#trimeverse-obsidian .tv-demo-badge { font-size: 9px; }
+#trimeverse-obsidian .tv-intro { font-size: 16px; }
+@keyframes tv-haze-drift { 0% { transform: translate3d(-2%,-2%,0) rotate(-5deg) scale(1); opacity: .75; } 50% { opacity: 1; } 100% { transform: translate3d(4%,4%,0) rotate(5deg) scale(1.16); opacity: .8; } }
+@media (max-width:860px) {
+  #trimeverse-obsidian .tv-deep-space { min-height: 410px; }
+  #trimeverse-obsidian .tv-orbit-visual { left: 22%; width: 78%; height: 245px; top: 20px; }
+  #trimeverse-obsidian .tv-space-content { padding-top: 125px; }
+}
+@media (max-width:600px) {
+  #trimeverse-obsidian .tv-cinema .tv-cinema-video { inset: 0; width: 100%; object-position: 55% center; }
+  #trimeverse-obsidian .tv-cinema-shade { background: linear-gradient(0deg,rgba(4,6,14,.97),rgba(4,6,14,.5) 45%,transparent 75%); }
+  #trimeverse-obsidian .tv-cinema-copy { bottom: 63px; }
+  #trimeverse-obsidian .tv-cinema-copy .tv-kicker { font-size: 9px; }
+  #trimeverse-obsidian .tv-source-credit { font-size: 9px; max-width: 69%; }
+  #trimeverse-obsidian .tv-motion-toggle { font-size: 10px; }
+  #trimeverse-obsidian .tv-intro { font-size: 14px; }
+  #trimeverse-obsidian .tv-orbit-visual { width: 100%; left: 0; height: 220px; }
+  #trimeverse-obsidian .tv-space-content { padding-top: 160px; }
+  #trimeverse-obsidian .tv-glass-tag { font-size: 8px; letter-spacing: .4px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  #trimeverse-obsidian .tv-living-haze { animation: none; }
+}

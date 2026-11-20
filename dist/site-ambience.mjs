@@ -1,0 +1,24 @@
+// Decorative motion is independent of every scientific model and its playback.
+const reduced=matchMedia('(prefers-reduced-motion: reduce)'),fine=matchMedia('(hover: hover) and (pointer: fine)');
+const menu=document.querySelector('.tv-menu'),links=document.querySelector('#tv-nav-links');
+function closeMenu(){menu.setAttribute('aria-expanded','false');links.classList.remove('tv-nav-open');}
+menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));links.classList.toggle('tv-nav-open',open);});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){closeMenu();menu.focus();}});
+links.addEventListener('click',event=>{if(event.target.closest('a'))closeMenu();});
+const ambient=document.createElement('div');ambient.className='ob-ambient';ambient.setAttribute('aria-hidden','true');ambient.innerHTML='<div class="ob-haze"></div><canvas></canvas>';document.body.prepend(ambient);
+const canvas=ambient.querySelector('canvas'),ctx=canvas.getContext('2d');
+const cursor=document.createElement('div');cursor.className='ob-cursor';cursor.setAttribute('aria-hidden','true');document.body.append(cursor);
+const toggle=document.createElement('button');toggle.type='button';toggle.className='ob-motion';toggle.setAttribute('aria-label','Toggle decorative space background animation');document.querySelector('footer').append(toggle);
+let motion=!reduced.matches,frame=0,previous=0,time=0,width=0,height=0;
+const stars=Array.from({length:125},(_,i)=>({x:((i*73+17)%997)/997,y:((i*137+29)%991)/991,r:.5+(i%4)*.22,phase:i*2.13,speed:.5+(i%6)*.13}));
+function draw(){if(!ctx)return;ctx.clearRect(0,0,width,height);for(const s of stars){const x=(s.x*width+time*s.speed)%width,y=s.y*height+Math.sin(time*.025+s.phase)*3;ctx.globalAlpha=.22+.27*(.5+.5*Math.sin(time*.55+s.phase));ctx.fillStyle='#b9d6f9';ctx.beginPath();ctx.arc(x,y,s.r,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;}
+function fit(){width=Math.max(1,innerWidth);height=Math.max(1,innerHeight);canvas.width=width;canvas.height=height;draw();}
+function tick(now){if(!motion||document.hidden||reduced.matches)return;frame=requestAnimationFrame(tick);if(previous&&now-previous<1000/30)return;if(previous)time+=Math.min((now-previous)/1000,.1);previous=now;draw();}
+function sync(){cancelAnimationFrame(frame);frame=0;previous=0;document.body.dataset.backgroundMotion=motion&&!reduced.matches?'on':'off';document.body.dataset.backgroundVisible=String(!document.hidden);toggle.setAttribute('aria-pressed',String(motion&&!reduced.matches));toggle.disabled=reduced.matches;toggle.textContent=reduced.matches?'Reduced motion':motion?'Pause space background':'Play space background';if(motion&&!reduced.matches&&!document.hidden)frame=requestAnimationFrame(tick);draw();}
+toggle.addEventListener('click',()=>{motion=!motion;sync();});reduced.addEventListener('change',()=>{motion=!reduced.matches;sync();});document.addEventListener('visibilitychange',sync);window.addEventListener('resize',fit);fit();sync();
+let pointerFrame=0,pointerX=0,pointerY=0,pointerActive=false;
+document.addEventListener('pointermove',event=>{if(!fine.matches||reduced.matches||event.pointerType==='touch'||event.target.closest('canvas,input,select')){cursor.style.opacity='0';cancelAnimationFrame(pointerFrame);pointerFrame=0;return;}pointerX=event.clientX;pointerY=event.clientY;pointerActive=!!event.target.closest('a,button,summary');if(!pointerFrame)pointerFrame=requestAnimationFrame(()=>{cursor.style.transform=`translate3d(${pointerX-14}px,${pointerY-14}px,0)`;cursor.dataset.active=String(pointerActive);cursor.style.opacity='1';pointerFrame=0;});});
+document.documentElement.addEventListener('pointerleave',()=>{cancelAnimationFrame(pointerFrame);pointerFrame=0;cursor.style.opacity='0';});
+document.querySelectorAll('.simulation-card').forEach(card=>card.addEventListener('pointermove',event=>{if(reduced.matches||!fine.matches)return;const rect=card.getBoundingClientRect();card.style.setProperty('--ob-x',`${event.clientX-rect.left}px`);card.style.setProperty('--ob-y',`${event.clientY-rect.top}px`);}));
+// Delegation also covers controls created by the existing lab scripts.
+document.addEventListener('click',event=>{const button=event.target.closest('.tv-button,.gold-button,.secondary-button,.space-buttons button,.play-button,.ob-motion');if(!button||reduced.matches)return;button.classList.add('ob-click');const rect=button.getBoundingClientRect(),ripple=document.createElement('span');ripple.className='ob-ripple';ripple.setAttribute('aria-hidden','true');ripple.style.left=`${event.detail?event.clientX-rect.left:rect.width/2}px`;ripple.style.top=`${event.detail?event.clientY-rect.top:rect.height/2}px`;button.append(ripple);setTimeout(()=>ripple.remove(),650);});
